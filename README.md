@@ -1,6 +1,22 @@
-DockerScan
-Offline Docker image security scanner with a Windows desktop GUI and command-line interface.
-Built by Muhammad Abdul Rehman.
+<p align="center">
+  <img src="icon.png" width="140" alt="DockerScan logo">
+</p>
+
+<h1 align="center">DockerScan</h1>
+
+<p align="center"><strong>See Through Docker Images.</strong></p>
+
+<p align="center">An Offline Docker Image Security Scanner for Windows — Desktop GUI & CLI</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Windows-0078D6" alt="Platform">
+  <img src="https://img.shields.io/badge/Version-2.0-8A2BE2" alt="Version">
+  <img src="https://img.shields.io/badge/Language-Python-3776AB" alt="Language">
+  <img src="https://img.shields.io/badge/Interface-CustomTkinter-orange" alt="Interface">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
+
+<p align="center">🚀 Built by <strong>Muhammad Abdul Rehman</strong> · ⚡ Stay Curious, Stay Secure</p>
 DockerScan inspects Docker `docker save` archives and unpacked image filesystems without starting containers. It checks image contents for likely secrets, package vulnerabilities from a local JSON database, and selected Docker/image configuration risks.
 > **Project status:** Independent security-learning project. Findings are heuristic and should be validated before making production decisions. The bundled vulnerability database is a small sample, not a complete or continuously updated CVE feed.
 Highlights
