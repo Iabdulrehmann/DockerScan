@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging / build output
+build/
+dist/
+*.spec.bak
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local scan output (may contain sensitive findings)
+dockerscan_*.txt
+dockerscan_*.json
+report.txt
+report.json
+before.json
+after.json
+comparison.txt
+*_report_*.json
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+secrets.*
+*.pem
+*.key
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

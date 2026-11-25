@@ -1,0 +1,49 @@
+{
+  "_note": "SAMPLE database for demonstration. Versions are simplified upstream versions. Replace/extend with your own data for real audits.",
+  "packages": [
+    {"name": "openssl", "ecosystems": ["deb", "apk", "rpm"], "vulnerabilities": [
+      {"id": "CVE-2014-0160", "severity": "Critical", "fixed_version": "1.0.1g",
+       "description": "Heartbleed: the TLS heartbeat extension leaks server memory.",
+       "risk": "Remote attackers can read private keys, passwords and session data from process memory."}]},
+    {"name": "bash", "ecosystems": ["deb", "apk", "rpm"], "vulnerabilities": [
+      {"id": "CVE-2014-6271", "severity": "Critical", "fixed_version": "4.3",
+       "description": "Shellshock: bash executes commands trailing function definitions in environment variables.",
+       "risk": "Remote code execution wherever untrusted input reaches environment variables (CGI, SSH, DHCP)."}]},
+    {"name": "zlib1g", "ecosystems": ["deb"], "vulnerabilities": [
+      {"id": "CVE-2018-25032", "severity": "High", "fixed_version": "1.2.12",
+       "description": "zlib memory corruption when compressing crafted input.",
+       "risk": "Crashes or memory corruption in programs compressing attacker-controlled data."}]},
+    {"name": "zlib", "ecosystems": ["apk", "rpm"], "vulnerabilities": [
+      {"id": "CVE-2018-25032", "severity": "High", "fixed_version": "1.2.12",
+       "description": "zlib memory corruption when compressing crafted input.",
+       "risk": "Crashes or memory corruption in programs compressing attacker-controlled data."}]},
+    {"name": "curl", "ecosystems": ["deb", "apk", "rpm"], "vulnerabilities": [
+      {"id": "CVE-2023-38545", "severity": "High", "fixed_version": "8.4.0",
+       "description": "SOCKS5 proxy handshake heap buffer overflow in curl/libcurl.",
+       "risk": "A malicious server or proxy could corrupt memory and possibly execute code."}]},
+    {"name": "sudo", "ecosystems": ["deb", "apk", "rpm"], "vulnerabilities": [
+      {"id": "CVE-2021-3156", "severity": "High", "fixed_version": "1.9.5p2",
+       "description": "Baron Samedit: heap overflow in sudoedit argument handling.",
+       "risk": "Any local user can escalate to root."}]},
+    {"name": "requests", "ecosystems": ["pypi"], "vulnerabilities": [
+      {"id": "CVE-2023-32681", "severity": "Medium", "fixed_version": "2.31.0",
+       "description": "Proxy-Authorization header can leak to the destination server on HTTPS redirects.",
+       "risk": "Proxy credentials may be exposed to third-party servers."}]},
+    {"name": "urllib3", "ecosystems": ["pypi"], "vulnerabilities": [
+      {"id": "CVE-2023-43804", "severity": "High", "fixed_version": "1.26.17",
+       "description": "Cookie header is not stripped on cross-origin redirects.",
+       "risk": "Session cookies can leak to another origin."}]},
+    {"name": "pyyaml", "ecosystems": ["pypi"], "vulnerabilities": [
+      {"id": "CVE-2020-14343", "severity": "Critical", "fixed_version": "5.4",
+       "description": "Arbitrary code execution when loading untrusted YAML with the full loader.",
+       "risk": "Parsing attacker-supplied YAML can run arbitrary code."}]},
+    {"name": "flask", "ecosystems": ["pypi"], "vulnerabilities": [
+      {"id": "CVE-2023-30861", "severity": "High", "fixed_version": "2.2.5",
+       "description": "Session cookie may be cached and served to other users by a caching proxy.",
+       "risk": "Session data can be exposed to other clients."}]},
+    {"name": "jinja2", "ecosystems": ["pypi"], "vulnerabilities": [
+      {"id": "CVE-2024-22195", "severity": "Medium", "fixed_version": "3.1.3",
+       "description": "The xmlattr filter allows attribute injection through keys containing spaces.",
+       "risk": "Cross-site scripting in templates that render untrusted attribute keys."}]}
+  ]
+}

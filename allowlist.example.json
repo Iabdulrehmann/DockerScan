@@ -1,0 +1,6 @@
+{
+  "rules": [
+    {"path": "/app/.env.example", "reason": "Example file with documentation keys, not real secrets"},
+    {"package": "bash", "pattern": "CVE-2014-6271", "reason": "Shell is never exposed to untrusted input"}
+  ]
+}

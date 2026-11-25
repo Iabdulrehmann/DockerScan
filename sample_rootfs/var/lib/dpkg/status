@@ -1,0 +1,15 @@
+Package: openssl
+Status: install ok installed
+Version: 1.0.1e-2+deb7u4
+
+Package: bash
+Status: install ok installed
+Version: 4.2+dfsg-0.1
+
+Package: curl
+Status: install ok installed
+Version: 7.88.1-10
+
+Package: zlib1g
+Status: install ok installed
+Version: 1:1.2.13.dfsg-1
