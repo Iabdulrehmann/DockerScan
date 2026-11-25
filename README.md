@@ -13,13 +13,8 @@ Local vulnerability matching: compares detected package versions against the sup
 Configuration checks: selected checks for root users, exposed sensitive ports, missing health checks, setuid/setgid files, and risky build commands.
 Layer attribution: associates supported findings with the image layer that introduced them.
 Allowlisting and report diffing: document accepted findings and compare JSON reports across scans.
-Screenshots
-Add genuine screenshots of the running application to `docs/screenshots/` and embed them here. Suggested captures:
-Dashboard
-Findings page with severity filters
-Package inventory / layer attribution
-Scan comparison (Diff)
-No screenshots are included yet; this section is intentionally a placeholder.
+## Screenshots
+
 Requirements
 Python 3.9 or newer
 Windows for the supplied `.bat` launchers
