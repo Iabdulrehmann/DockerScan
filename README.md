@@ -14,6 +14,7 @@ Configuration checks: selected checks for root users, exposed sensitive ports, m
 Layer attribution: associates supported findings with the image layer that introduced them.
 Allowlisting and report diffing: document accepted findings and compare JSON reports across scans.
 ## Screenshots
+![DockerScan dashboard](Screenshot%202026-11-25%20163707.png)
 
 Requirements
 Python 3.9 or newer
