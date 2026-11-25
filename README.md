@@ -1,238 +1,82 @@
-# DockerScan
+<div align="center">
+<img src="icon.png" width="120" alt="DockerScan logo"/>
+🛡️ DockerScan
+Offline Docker Image Security Scanner — Desktop GUI + CLI
+!Python
+!Platform
+!GUI
+!Mode
+!License
+🚀 Built by Muhammad Abdul Rehman
+BS Computer Science — Virtual University of Pakistan · PNY Trainings
+⚡ Stay Curious, Stay Secure
+</div>
 
-**Offline Docker image security scanner with a Windows desktop GUI and command-line interface.**
+📌 About
+DockerScan is a security scanner that checks Docker images without running them. It opens a saved Docker image (.tar file) or an unpacked image folder and looks for security problems — completely offline, no Docker installation and no internet needed.
+It was built as a final project for the PNY Trainings Cyber Security course.
+✨ Features — The 5 Security Checks
+#
+Check
+What it finds
+1
+🔑 Secret Detection
+Hardcoded passwords, API keys, tokens and private keys hidden in files (pattern + entropy based, values redacted in reports)
+2
+📦 Vulnerable Packages
+Installed packages (dpkg, apk, RPM, Python) matched against a local vulnerability database (JSON)
+3
+⚙️ Configuration Risks
+Container running as root, sensitive exposed ports (22, 3306…), missing HEALTHCHECK, secrets in ENV
+4
+⚠️ Dangerous File Permissions
+setuid / setgid files that can be abused for privilege escalation
+5
+🧱 Layer-by-Layer Analysis
+Which image layer introduced each problem, plus full package inventory
+More: severity dashboard (Critical / High / Medium / Low), search & filters, scan history, report comparison (diff), allowlist support, and one-click TXT / JSON report export.
+📸 Screenshot
+!DockerScan dashboard
+🚀 Quick Start (Windows)
+:: 1. Install Python 3.9+ from python.org (tick "Add Python to PATH")
+:: 2. Install the one dependency
+py -m pip install -r requirements.txt
 
-Built by **Muhammad Abdul Rehman**.
-
-DockerScan inspects Docker `docker save` archives and unpacked image filesystems without starting containers. It checks image contents for likely secrets, package vulnerabilities from a local JSON database, and selected Docker/image configuration risks.
-
-> **Project status:** Independent security-learning project. Findings are heuristic and should be validated before making production decisions. The bundled vulnerability database is a small sample, not a complete or continuously updated CVE feed.
-
-## Highlights
-
-- **Offline scanning:** no Docker daemon or running container is required.
-- **Desktop interface:** CustomTkinter dashboard, findings, package inventory, image layers, scan history, and report comparison.
-- **CLI:** suitable for repeatable local checks and scripts.
-- **Secret detection:** pattern and entropy-based checks, with detected values redacted in reports.
-- **Package inventory:** supports dpkg, apk, RPM SQLite databases, and Python `dist-info` metadata.
-- **Local vulnerability matching:** compares detected package versions against the supplied JSON database.
-- **Configuration checks:** selected checks for root users, exposed sensitive ports, missing health checks, setuid/setgid files, and risky build commands.
-- **Layer attribution:** associates supported findings with the image layer that introduced them.
-- **Allowlisting and report diffing:** document accepted findings and compare JSON reports across scans.
-
-## Screenshots
-
-Add genuine screenshots of the running application to `docs/screenshots/` and embed them here. Suggested captures:
-
-1. Dashboard
-2. Findings page with severity filters
-3. Package inventory / layer attribution
-4. Scan comparison (Diff)
-
-No screenshots are included yet; this section is intentionally a placeholder.
-
-## Requirements
-
-- Python 3.9 or newer
-- Windows for the supplied `.bat` launchers
-- `customtkinter` for the desktop GUI
-
-The scanner and CLI use Python standard-library modules. The GUI dependency is listed in `requirements.txt`.
-
-## Quick start (Windows)
-
-1. Install Python from [python.org](https://www.python.org/downloads/). During setup, enable **Add Python to PATH**.
-2. Download or clone this repository.
-3. Open a terminal in the repository folder.
-4. Install the dependency:
-
-   ```powershell
-   py -m pip install -r requirements.txt
-   ```
-
-5. Start the desktop application:
-
-   ```powershell
-   py main.py
-   ```
-
-   Or double-click `RUN_DESKTOP.bat`.
-
-## Run from source (Linux / macOS)
-
-The CLI can be run on platforms with Python 3.9+:
-
-```bash
-python3 -m pip install -r requirements.txt
-python3 cli.py scan sample_vulnerable_image.tar
-```
-
-The desktop interface requires a working Tk installation and a supported graphical environment.
-
-## CLI usage
-
-Scan a Docker image archive:
-
-```bash
-python cli.py scan path/to/image.tar
-```
-
-Scan an unpacked Docker image directory:
-
-```bash
-python cli.py scan path/to/unpacked-image/
-```
-
-Scan a plain filesystem directory with an image configuration file:
-
-```bash
-python cli.py scan path/to/rootfs/ --config sample_config.json
-```
-
-Use a custom vulnerability database and allowlist:
-
-```bash
-python cli.py scan image.tar \
-  --db data/vulnerabilities.json \
-  --allowlist allowlist.example.json \
-  --fail-on High
-```
-
-Export reports:
-
-```bash
-python cli.py scan image.tar --out report.txt --json report.json
-```
-
-Compare two JSON reports:
-
-```bash
-python cli.py diff before.json after.json --out comparison.txt
-```
-
-See all available options:
-
-```bash
-python cli.py --help
-python cli.py scan --help
-python cli.py diff --help
-```
-
-### Exit codes
-
-| Code | Meaning |
-|---:|---|
-| `0` | Scan completed; no finding reached the configured failure threshold (or no threshold was set). |
-| `1` | A finding reached `--fail-on`, or diff mode found new findings. |
-| `2` | Input, parsing, or report-writing error. |
-
-## Try the included sample images
-
-The repository includes small demonstration archives:
-
-- `sample_vulnerable_image.tar`
-- `sample_vulnerable_image_fixed.tar`
-- `sample_rpm_image.tar`
-
-Run a sample scan:
-
-```bash
+:: 3. Run the desktop app — or just double-click RUN_DESKTOP.bat
+py main.py
+Build a single clickable .exe: double-click BUILD_EXE.bat → your app appears in the dist folder.
+🧪 Try the Demo
+The repo includes sample images so you can test instantly:
+Open the app → Select Image
+Pick sample_vulnerable_image.tar
+Click Start Scan
+Result: 24 findings — 8 Critical · 6 High · 7 Medium · 2 Low · 1 Informational ✅
+Then scan sample_vulnerable_image_fixed.tar and use Diff to see the problems disappear.
+💻 CLI Usage
 python cli.py scan sample_vulnerable_image.tar
-```
-
-Compare the vulnerable and fixed examples:
-
-```bash
-python cli.py scan sample_vulnerable_image.tar --json before.json
-python cli.py scan sample_vulnerable_image_fixed.tar --json after.json
+python cli.py scan image.tar --out report.txt --json report.json
 python cli.py diff before.json after.json
-```
-
-These are test fixtures for demonstrating scanner behavior. They are not real production images.
-
-## Allowlist example
-
-Copy `allowlist.example.json` and edit it for your environment. Rules can match fields such as path, title, category, severity, package, pattern, or finding fingerprint. A rule's `reason` documents why the finding is accepted.
-
-Example:
-
-```json
-{
-  "rules": [
-    {
-      "path": "/app/.env.example",
-      "reason": "Example configuration file"
-    }
-  ]
-}
-```
-
-Review allowlist rules periodically. Suppressing a finding does not remove the underlying risk.
-
-## Vulnerability database
-
-The default database is `data/vulnerabilities.json`. It uses a local JSON format containing package names, ecosystems, vulnerability IDs, severities, fixed versions, and descriptions.
-
-**Important:** The bundled database is deliberately limited and is not an authoritative vulnerability feed. It can miss vulnerabilities and may report false positives, particularly where distributions backport security fixes. Keep your own database current and verify findings against vendor advisories and trusted vulnerability sources.
-
-## Build a Windows executable
-
-On Windows, run:
-
-```powershell
-BUILD_EXE.bat
-```
-
-The script uses the included PyInstaller spec files. Generated `build/` and `dist/` directories are intentionally excluded from source control; publish release executables through GitHub Releases if you choose to distribute them.
-
-## Repository structure
-
-```text
+📁 Project Structure
 DockerScan/
-├── data/
-│   └── vulnerabilities.json
-├── allowlist.example.json
-├── allowlist.py
-├── cli.py
-├── config_checker.py
-├── desktop_app.py
-├── main.py
-├── report_generator.py
-├── scanner.py
-├── secret_detector.py
-├── vulnerability_checker.py
-├── requirements.txt
-├── RUN_DESKTOP.bat
-├── BUILD_EXE.bat
-├── DockerScan.spec
-├── DockerScan-cli.spec
-└── sample_*.tar
-```
-
-## Security and safe use
-
-- DockerScan is a **static inspection tool**. It is designed to read image data, not run containers or execute image commands.
-- Only scan images and files you are authorized to inspect.
-- Treat reports as potentially sensitive: they can reveal package inventories, file paths, and security findings. Store and share them carefully.
-- Secret detection is heuristic. False positives and false negatives are possible.
-- A clean scan does not prove an image is secure.
-- Validate important findings independently before blocking a release or changing a production system.
-
-For vulnerability reports or security concerns in this project, please do not publish real secrets or sensitive image contents in a public issue.
-
-## Known limitations
-
-- The RPM parser currently supports the SQLite `rpmdb.sqlite` format; older RPM database formats may not be supported.
-- The bundled vulnerability database is only a sample and is not updated automatically.
-- Version comparison is an approximation and may not account for distribution-specific backported fixes.
-- OCI image layouts without a Docker `manifest.json`, and some package ecosystems (including Java and npm inventories), are not currently covered.
-- Scanning a plain filesystem folder on Windows cannot reliably inspect Unix setuid bits; scanning a tar archive is preferred for that check.
-- Windows-specific path edge cases should be tested on the target Windows version before relying on results operationally.
-
-## Contributing
-
-Bug reports, reproducible test cases, and focused improvements are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-This project is released under the MIT License. See [LICENSE](LICENSE).
+├── main.py                    → App entry point
+├── desktop_app.py             → Desktop GUI (CustomTkinter)
+├── scanner.py                 → Core scanning engine
+├── secret_detector.py         → Check 1: secrets
+├── vulnerability_checker.py   → Check 2: vulnerable packages
+├── config_checker.py          → Checks 3–5: config, permissions, layers
+├── report_generator.py        → TXT / JSON reports
+├── cli.py                     → Command-line interface
+├── data/vulnerabilities.json  → Local vulnerability database
+└── sample_*.tar               → Demo images (vulnerable + fixed)
+⚠️ Limitations
+Static scan only — the container is never run.
+The bundled vulnerability database is a small sample for learning, not a full CVE feed.
+Always verify important findings before using them in production.
+👨‍💻 Author
+<div align="center">
+Made by Abdul Rehman
+Muhammad Abdul Rehman — BS CS, Virtual University of Pakistan · PNY Trainings
+🛡️ DockerScan · ⚡ Stay Curious, Stay Secure
+</div>
+📄 License
+Released under the MIT License — see LICENSE.
